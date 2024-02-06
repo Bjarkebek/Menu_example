@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:actionProviderClass="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/help"
+        android:title="Help menu"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/settings"
+        android:title="Settings menu"
+        app:showAsAction="always" />
+    <group
+        android:id="@+id/popupGroup">
+        <item
+            android:id="@+id/groupPopup1"
+            android:title="change color to pink"
+            android:onClick="onGroupItemClick"
+            app:showAsAction="always"/>
+        <item
+            android:id="@+id/groupPopup2"
+            android:title="change color to black"
+            android:onClick="onGroupItemClick"
+            app:showAsAction="always"/>
+    </group>
+
+
+
+
+</menu>
