@@ -24,23 +24,24 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         setContentView(R.layout.activity_main);
 
 
-
-        Button btn = (Button) findViewById(R.id.popupBtn);
-        TextView textView = (TextView) findViewById(R.id.contextView);
-
         // sætter knappen til at have en popup menu
+        Button btn = (Button) findViewById(R.id.popupBtn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PopupMenu popup = new PopupMenu(MainActivity.this, v);
                 popup.setOnMenuItemClickListener(MainActivity.this);
                 popup.inflate(R.menu.popup_menu);
+
+
                 popup.show();
             }
         });
 
+
         // sætter textView til at have context menu
-        registerForContextMenu (textView);
+        TextView textView = (TextView) findViewById(R.id.contextView);
+        registerForContextMenu(textView);
     }
 
     // opretter options menu
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         return super.onCreateOptionsMenu(menu);
     }
 
+    // opretter context menu + adder items til menuen
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.setHeaderTitle("Context Menu");
@@ -60,16 +62,14 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     }
 
 
-
     // Click-events til options menu
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        if (id == R.id.help) {
+        if (item.getItemId() == R.id.help) {
             Intent intent = new Intent(this, HelpActivity.class);
             startActivity(intent);
             return true;
-        } else if (id == R.id.settings) {
+        } else if (item.getItemId() == R.id.settings) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
             return true;
@@ -99,13 +99,12 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
     // Click-events til popup menu
     public boolean onMenuItemClick(MenuItem item) {
-        int id = item.getItemId();
 
-        if (id == R.id.help) {
+        if (item.getItemId() == R.id.help) {
             Intent intent = new Intent(this, HelpActivity.class);
             startActivity(intent);
             return true;
-        } else if (id == R.id.settings) {
+        } else if (item.getItemId() == R.id.settings) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
             return true;
@@ -116,12 +115,11 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     // click events til group items i popup menuen
     public void onGroupItemClick(MenuItem item) {
         Button button = findViewById(R.id.popupBtn);
-        int id = item.getItemId();
 
-        if (id == R.id.groupPopup1) {
+        if (item.getItemId() == R.id.groupPopup1) {
             button.setBackgroundColor(getColor(R.color.pink));
         }
-        if (id == R.id.groupPopup2) {
+        if (item.getItemId() == R.id.groupPopup2) {
             button.setBackgroundColor(getColor(R.color.black));
         }
     }
