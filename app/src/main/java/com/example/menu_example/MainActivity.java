@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
@@ -50,12 +51,15 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         return super.onCreateOptionsMenu(menu);
     }
 
-    // opretter context menu
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.context_menu, menu);
+        menu.setHeaderTitle("Context Menu");
+        menu.add(0, v.getId(), 0, "Item 1");
+        menu.add(0, v.getId(), 0, "Item 2");
+        menu.add(0, v.getId(), 0, "Item 3");
     }
+
+
 
     // Click-events til options menu
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -77,16 +81,15 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
     // Click-events til context menu
     public boolean onContextItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        if (id == R.id.item1) {
-            // action
+        if (item.getTitle() == "Item 1") {
+            Toast.makeText(this, "Item 1 pressed", Toast.LENGTH_LONG).show();
             return true;
-        } else if (id == R.id.item2) {
-            // action
+        } else if (item.getTitle() == "Item 2") {
+            Toast.makeText(this, "Item 2 pressed", Toast.LENGTH_LONG).show();
             return true;
-        } else if (id == R.id.item3) {
-            // action
+        } else if (item.getTitle() == "Item 3") {
+            Toast.makeText(this, "Item 3 pressed", Toast.LENGTH_LONG).show();
             return true;
         } else {
             return super.onContextItemSelected(item);
